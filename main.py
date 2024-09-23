@@ -16,13 +16,16 @@ def chat(prompt, name):
     :param name: Name of current A.I. talking
     :return: A formatted string with the AI's response
     """
-    response = o.chat(model="dolphin-llama3", messages=[
-        {
-            'role': 'user',
-            'content': prompt
-        },
-    ])
-    return f"{name}: {response['message']['content']}"
+    try:
+        response = o.chat(model="dolphin-llama3", messages=[
+            {
+                'role': 'user',
+                'content': prompt
+            },
+        ])
+        return f"{name}: {response['message']['content']}"
+    except Exception as e:
+        return f"{name}: Could not get response. Error: {str(e)}"
 
 
 class AIPanelGame:

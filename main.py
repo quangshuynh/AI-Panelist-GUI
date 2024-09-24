@@ -5,7 +5,7 @@ Quang Huynh
 """
 
 import tkinter as tk
-from tkinter import scrolledtext
+from tkinter import scrolledtext, simpledialog
 import ollama as o
 import random
 
@@ -39,7 +39,7 @@ class Agent:
 
 
 class AIPanelGame:
-    def __init__(self, root, agents):
+    def __init__(self, root, agents, username):
         """
         A class representing the AI Panel Game GUI.
         This class handles the main functionality of the game, including accepting user input,
@@ -50,6 +50,7 @@ class AIPanelGame:
         self.agents = agents
         self.root = root
         self.root.title("AI Panel Game")
+        self.username = username
 
         # Instructions label
         self.instructions = tk.Label(root, text="Ask a question to the AI panelists")
@@ -119,17 +120,33 @@ class AIPanelGame:
             return  # Don't process empty questions
 
         # Display the user's question in the chat
-        self.update_chat(('User (Moderator)', user_question))
+        self.update_chat((f"{self.username} (Moderator) ", user_question))
 
         # Get AI responses from panelists
-        user_question = ('User', user_question)
+        user_question = (self.username, user_question)
         for agent in agent_list:
             agent.add_message(f"{user_question[0]}: {user_question[1]}", 'user')
 
         ai_responses = []
+        last_speaker = None  # iinitialize last_speaker to track who spoke previously
+
         for agent in agent_list:
             print(user_question)
-            user_question = (agent.name, agent.get_output(user_question[1])['message']['content'])
+            # get the response from the current agent
+            response = agent.get_output(user_question[1])['message']['content']
+
+            # If theres a last speaker, include their name in the response
+            if last_speaker:
+                formatted_response = f"{last_speaker}, {response}"
+            else:
+                formatted_response = response
+
+            # Now asssign the current agent as the last speaker
+            last_speaker = agent.name
+
+            # store the response and update the chat
+            user_question = (agent.name, formatted_response)
+
             for A in agent_list:
                 if A != agent:
                     A.add_message(user_question[1], 'user')
@@ -182,11 +199,23 @@ def main():
     :return: None
     """
     root = tk.Tk()
-    game = AIPanelGame(root, agents=[])
-    name = game.randomize_unique_names()
-    desc = "a panelist on a podcast discussing the user\'s topic. you keep the conversation going by asking questions to the others or the user. do not introduce yourself nor say your name."
-    agent_list = [Agent(name, desc) for _ in range(2)]
+
+    # Prompt the user for their name
+    username = simpledialog.askstring("Username selector", "Enter your name: ",)
+    if not username:  # if blank, default to "User"
+        username = "User"
+
+    # Prompt the user for the number of AI panelists
+    num_agents = simpledialog.askinteger("Number of Panelists", "Enter the number of AI panelists:", minvalue=2, maxvalue=10)
+
+    # Create the game instance
+    game = AIPanelGame(root, agents=[], username=username)
+
+    # Create AI panelists
+    desc = "a panelist on a podcast discussing the user's topic. you keep the conversation going by asking questions to the others or the user. do not introduce yourself nor say your name."
+    agent_list = [Agent(game.randomize_unique_names(), desc) for _ in range(num_agents)]
     game.agents = agent_list
+
     root.mainloop()
 
 

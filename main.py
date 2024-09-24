@@ -77,8 +77,8 @@ class AIPanelGame:
 
         # Available names
         self.available_names = [
-            'Quang', 'Bob', 'Charlie', 'David', 'Kai', 'Frank', 'Abby', 'Hannah', 'Olivier', 'Jack', 'Karen', 'Leo',
-            'Mia','Nathan', 'Olivia', 'Paul', 'Quinn', 'Rachel', 'Sam', 'Tina', 'Catherine', 'Vince', 'Wendy', 'Xander',
+            'Quang', 'Catherine', 'Charlie', 'David', 'Kai', 'Frank', 'Abby', 'Hannah', 'Olivier', 'Jack', 'Karen', 'Leo',
+            'Mia','Nathan', 'Olivia', 'Paul', 'Quinn', 'Rachel', 'Sam', 'Tina', 'Bob', 'Vince', 'Wendy', 'Xander',
             'Vivian', 'Zane', 'Aaron', 'Bianca', 'Caleb', 'Diana', 'Edward', 'Fiona', 'George', 'Harper', 'Isaac',
             'Julia', 'Kevin', 'Liam', 'Maya', 'Nina', 'Omar', 'Penny', 'Quincy', 'Rose', 'Sean', 'Tara', 'Ulysses',
             'Victor', 'Willow', 'Uday', 'Michael', 'Zachary', 'Amber', 'Brian', 'Clara','Derek', 'Ella', 'Felix',

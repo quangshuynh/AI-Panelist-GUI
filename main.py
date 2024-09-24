@@ -85,7 +85,8 @@ class AIPanelGame:
             'Gabriel', 'Hazel', 'Ian', 'Jade', 'Kyle', 'Lara', 'Max', 'Nora', 'Oscar', 'Parker', 'Quentin', 'Rebecca',
             'Sophie', 'Tom', 'Edward', 'Vivian', 'Walter', 'Xavier', 'Yvonne', 'Zoey', 'Anthony', 'Bella', 'Chris',
             'Daphne', 'Elliot', 'Freya', 'Gavin', 'Hope', 'John', 'Jasper', 'Kira', 'Lucas', 'Mason', 'Nolan',
-            'Ophelia', 'Preston', 'Ruby', 'Spencer', 'Tessa', 'Uriel', 'Violet', 'Wesley'
+            'Ophelia', 'Preston', 'Ruby', 'Spencer', 'Tessa', 'Uriel', 'Violet', 'Wesley', 'Evan', 'CJ', 'Tate',
+            'Trevor'
         ]
         self.used_names = []
 
@@ -199,6 +200,7 @@ def main():
     :return: None
     """
     root = tk.Tk()
+    root.attributes('-topmost', True)  # window always on top
 
     # Prompt the user for their name
     username = simpledialog.askstring("Username selector", "Enter your name: ",)

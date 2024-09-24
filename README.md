@@ -1,3 +1,5 @@
 ## AI Panelist GUI
 
-![image](https://cdn.discordapp.com/attachments/1286058300580040727/1287970735876476960/image.png?ex=66f37bb8&is=66f22a38&hm=34758258f4111d951171b27c1a1fe4f71724f57ee0372bc652fd8a3ef7731572&)
+### Uses Ollama API and Tkinter GUI to create a panel discussion game
+
+![image](https://cdn.discordapp.com/attachments/1286058300580040727/1288108954362056716/image.png?ex=66f3fc72&is=66f2aaf2&hm=e3a21fa75c71291d729667edaf733e9b5843d8bbd0d09364624c3ef1de3aa117&)

@@ -1,5 +1,5 @@
 """
-Ollama
+Ollama A.I. Panelist GUI App
 09/23/24
 Quang Huynh
 """
@@ -7,6 +7,7 @@ Quang Huynh
 import tkinter as tk
 from tkinter import scrolledtext
 import ollama as o
+import random
 
 dolphin = "dolphin-llama3"
 
@@ -51,7 +52,7 @@ class AIPanelGame:
         self.root.title("AI Panel Game")
 
         # Instructions label
-        self.instructions = tk.Label(root, text="Ask a question to the AI panelists:")
+        self.instructions = tk.Label(root, text="Ask a question to the AI panelists")
         self.instructions.pack(pady=5)
 
         # User input box
@@ -73,6 +74,35 @@ class AIPanelGame:
         self.clear_button = tk.Button(root, text="Clear", command=self.clear_chat)
         self.clear_button.pack(pady=5)
 
+        # Available names
+        self.available_names = [
+            'Quang', 'Bob', 'Charlie', 'David', 'Kai', 'Frank', 'Abby', 'Hannah', 'Olivier', 'Jack', 'Karen', 'Leo',
+            'Mia','Nathan', 'Olivia', 'Paul', 'Quinn', 'Rachel', 'Sam', 'Tina', 'Catherine', 'Vince', 'Wendy', 'Xander',
+            'Vivian', 'Zane', 'Aaron', 'Bianca', 'Caleb', 'Diana', 'Edward', 'Fiona', 'George', 'Harper', 'Isaac',
+            'Julia', 'Kevin', 'Liam', 'Maya', 'Nina', 'Omar', 'Penny', 'Quincy', 'Rose', 'Sean', 'Tara', 'Ulysses',
+            'Victor', 'Willow', 'Uday', 'Michael', 'Zachary', 'Amber', 'Brian', 'Clara','Derek', 'Ella', 'Felix',
+            'Gabriel', 'Hazel', 'Ian', 'Jade', 'Kyle', 'Lara', 'Max', 'Nora', 'Oscar', 'Parker', 'Quentin', 'Rebecca',
+            'Sophie', 'Tom', 'Edward', 'Vivian', 'Walter', 'Xavier', 'Yvonne', 'Zoey', 'Anthony', 'Bella', 'Chris',
+            'Daphne', 'Elliot', 'Freya', 'Gavin', 'Hope', 'John', 'Jasper', 'Kira', 'Lucas', 'Mason', 'Nolan',
+            'Ophelia', 'Preston', 'Ruby', 'Spencer', 'Tessa', 'Uriel', 'Violet', 'Wesley'
+        ]
+        self.used_names = []
+
+    def randomize_unique_names(self):
+        """
+        A function to select a unique name from the available names
+
+        This method ensures that no two names are the same by removing the chosen name from list of available names
+        :return: A unique name
+        """
+        if len(self.available_names) == 0:
+            # reset the list if all names have been used
+            self.available_names = self.used_names
+            self.used_names = []
+        name = random.choice(self.available_names)
+        self.available_names.remove(name)
+        self.used_names.append(name)
+        return name
 
     def ask_question(self):
         """
@@ -125,8 +155,8 @@ class AIPanelGame:
         :return: None
         """
         self.chat_history.config(state=tk.NORMAL)
-        self.chat_history.insert(tk.END, f"\n\n{message[0]}: ", "bold")
-        self.chat_history.insert(tk.END, message[1] + "\n", "normal")
+        self.chat_history.insert(tk.END, f"\n\n{message[0]}: ", "bold")  # panelist name
+        self.chat_history.insert(tk.END, message[1] + "\n", "normal")  # panelist message
         # self.chat_history.yview(tk.END)  # Auto-scroll to the bottom
         self.chat_history.config(state=tk.DISABLED)
 
@@ -151,11 +181,12 @@ def main():
 
     :return: None
     """
-    agent_list = [Agent(f'Panelist {name}',
-                        'a panelist on a podcast discussing the user\'s topic. you keep the conversation going by asking questions to the others or the user. do not introduce yourself nor say your name.')
-                  for name in ['Alice', 'Bob', 'Chris', 'Dave']]
     root = tk.Tk()
-    game = AIPanelGame(root, agent_list)
+    game = AIPanelGame(root, agents=[])
+    name = game.randomize_unique_names()
+    desc = "a panelist on a podcast discussing the user\'s topic. you keep the conversation going by asking questions to the others or the user. do not introduce yourself nor say your name."
+    agent_list = [Agent(name, desc) for _ in range(2)]
+    game.agents = agent_list
     root.mainloop()
 
 

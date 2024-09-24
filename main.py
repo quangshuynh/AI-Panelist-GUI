@@ -206,9 +206,11 @@ def main():
     username = simpledialog.askstring("Username selector", "Enter your name: ",)
     if not username:  # if blank, default to "User"
         username = "User"
+    print(f"Selected username: {username}")
 
     # Prompt the user for the number of AI panelists
     num_agents = simpledialog.askinteger("Number of Panelists", "Enter the number of AI panelists:", minvalue=2, maxvalue=10)
+    print(f"Selected number of panelists: {num_agents}")
 
     # Create the game instance
     game = AIPanelGame(root, agents=[], username=username)

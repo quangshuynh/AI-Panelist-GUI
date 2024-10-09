@@ -1,5 +1,12 @@
-## AI Panelist GUI
+![image](https://cdn.discordapp.com/attachments/931674944063029259/1293680760485580880/image.png?ex=67084198&is=6706f018&hm=9588dc2ed62ec3e11280a17a8a99bafb30bc391ef6bec2c4470a7b6ae5cc36c7&)
 
-### Uses Ollama API and Tkinter GUI to create a panel discussion game
+# Ollama A.I. Panelist GUI App
 
-![image](https://cdn.discordapp.com/attachments/1286058300580040727/1288108954362056716/image.png?ex=66f3fc72&is=66f2aaf2&hm=e3a21fa75c71291d729667edaf733e9b5843d8bbd0d09364624c3ef1de3aa117&)
+This project is a GUI application that simulates an interactive panel of AI agents that respond to user questions as panelists. The app, built with `Tkinter`, leverages the `Ollama` API to allow AI agents to provide conversational responses. Each agent acts as a panelist with a unique personality, and the user can ask questions to the panel and receive multiple AI-driven responses.
+
+## Features
+
+- **Customizable AI Panelists**: The app supports multiple AI panelists that provide unique responses to user questions.
+- **Dynamic Conversations**: AI panelists engage in continuous conversation, asking questions and responding to both the user and other panelists.
+- **Interactive GUI**: Built with `Tkinter`, the app provides a scrolled chat window for displaying user questions and AI responses.
+- **Random Name Generation**: Each AI panelist is assigned a unique name to ensure a dynamic panel of agents.

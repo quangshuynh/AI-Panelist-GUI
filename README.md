@@ -1,4 +1,4 @@
-![image](https://cdn.discordapp.com/attachments/931674944063029259/1293680760485580880/image.png?ex=67084198&is=6706f018&hm=9588dc2ed62ec3e11280a17a8a99bafb30bc391ef6bec2c4470a7b6ae5cc36c7&)
+![image](https://i.imgur.com/OnSa9rd.png)
 
 # Ollama A.I. Panelist GUI App
 
